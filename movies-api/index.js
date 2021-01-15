@@ -17,26 +17,17 @@ const errHandler = (err, req, res,) => {
   if(process.env.NODE_ENV === 'production') {
     return res.status(500).send(`Something went wrong!`);
   }
-  //res.status(500).send(`Hey!! You caught the error 👍👍, ${err.stack} `);
+  res.status(500).send(`Hey!! You caught the error 👍👍, ${err.stack} `);
 };
-
+const app = express();
 if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
 }
 
-const app = express();
+
 
 const port = process.env.PORT;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-
-app.use(express.static('public'));
-//app.use('/api/movies', moviesRouter);
-
-app.use('/api/users', usersRouter);
-app.use(passport.initialize());
 
 app.use(session({
   secret: 'ilikecake',
@@ -44,7 +35,16 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
+app.use(express.static('public'));
+//app.use('/api/movies', moviesRouter);
+
+app.use(passport.initialize());
+app.use('/api/users', usersRouter);
+
+app.use('/api/movies',  moviesRouter);
 
 app.use(errHandler);
 
@@ -56,4 +56,3 @@ app.listen(port, () => {
 //app.use('/api/movies', authenticate, moviesRouter);
 
 //app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
-app.use('/api/movies',  moviesRouter);
