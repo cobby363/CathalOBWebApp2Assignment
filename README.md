@@ -114,26 +114,17 @@ user must login and security is implemented using passport. The protected routes
 
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
+Within the react app's jackage.json, I added a proxy to go to port 8080 at which I have my API set up to always run on. 
 
 ~~~Javascript
-export const getMovies = () => {
-  return fetch(
-     '/api/movies',{headers: {
-       'Authorization': window.localStorage.getItem('token')
+
+export const getUpcomingMovies = () => {
+    return fetch(
+       '/api/upcoming',{headers: {
+         'Authorization': window.localStorage.getItem('token')
+      }
     }
-  }
-  )
-    .then(res => res.json())
-    .then(json => {return json.results;});
-};
+    ).then(res => res.json());
+  };
 
 ~~~
-
-## Extra features
-
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
-
-## Independent learning.
-
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
