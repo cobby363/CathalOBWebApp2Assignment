@@ -1,4 +1,4 @@
-export const upcomingMovies = [
+export const nowPlayingMovies = [
     {
         "adult": false,
         "backdrop_path": "/srYya1ZlI97Au4jUYAktDe3avyA.jpg",

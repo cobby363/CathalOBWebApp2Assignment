@@ -1,5 +1,5 @@
  import React, { useEffect, createContext, useReducer } from "react";
- import { getMovies, getUpcomingMovies, getPlayingNow, getPopular, getTopRated } from "../api/tmdb-api";
+ import { getMovies, getUpcomingMovies, getPopular, getTopRated, getNowPlaying } from "../api/tmdb-api";
 
  export const MoviesContext = createContext(null);
  const reducer = (state, action) => {
@@ -115,7 +115,7 @@
   
 
    useEffect(() => {
-     getPlayingNow().then((nowPlaying) => {
+     getNowPlaying().then((nowPlaying) => {
        dispatch({ type: "load-nowPlaying", payload: { nowPlaying } });
      });
      // eslint-disable-next-line react-hooks/exhaustive-deps
