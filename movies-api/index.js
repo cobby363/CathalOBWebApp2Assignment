@@ -6,7 +6,7 @@ import './db';
 import {loadUsers, loadMovies} from './seedData';
 import usersRouter from './api/users';
 import session from 'express-session';
-//import authenticate from './authenticate';
+///import authenticate from './authenticate';
 import passport from './authenticate';
 
 dotenv.config();
@@ -17,7 +17,7 @@ const errHandler = (err, req, res,) => {
   if(process.env.NODE_ENV === 'production') {
     return res.status(500).send(`Something went wrong!`);
   }
-  res.status(500).send(`Hey!! You caught the error 👍👍, ${err.stack} `);
+  //res.status(500).send(`Hey!! You caught the error 👍👍, ${err.stack} `);
 };
 
 if (process.env.SEED_DB) {
